@@ -1,0 +1,12 @@
+html {
+    margin: 0;
+}
+
+.my-mb-1 {
+    margin-bottom: 1rem;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: fit-content;
+}
