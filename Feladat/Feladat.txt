@@ -1,0 +1,15 @@
+Kiegészítés:
+Új gombok
+	karakterenkénti törlés
+	alaphelyzet (C)
+	tizedes vessző
+	gyökvonás
+	négyzetre emelés
+	reciprok
+
+Dizájn (ne táblázattal)
+Korlátok között lehet reszponzív, mobilon is jól nézzen ki:
+	bootsrap változat
+	flex változat
+
+Diagram önálló rajzolása
