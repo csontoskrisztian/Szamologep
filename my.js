@@ -1,10 +1,10 @@
 // console.log("Hello World!");
 
 // Állapotok: konstansok
-const STATUS_FIRSTNUMBER = "firstnum"
-const STATUS_SECONDNUMBER = "secondnum"
-const STATUS_OPERAND = "operand"
-const STATUS_DONE = "done"
+const STATUS_FIRSTNUMBER = "STATUS_FIRSTNUMBER"
+const STATUS_SECONDNUMBER = "STATUS_SECONDNUMBER"
+const STATUS_OPERAND = "STATUS_OPERAND"
+const STATUS_DONE = "STATUS_DONE"
 
 // Változók
 let number1 = null;
@@ -18,44 +18,15 @@ let displayNumber1 = document.getElementById("displayNumber1");
 let displayNumber2 = document.getElementById("displayNumber2");
 let displayOperand = document.getElementById("displayOperand");
 
-//szám gombok
-let button0 = document.getElementById("button0");
-let button1 = document.getElementById("button1");
-let button2 = document.getElementById("button2");
-let button3 = document.getElementById("button3");
-let button4 = document.getElementById("button4");
-let button5 = document.getElementById("button5");
-let button6 = document.getElementById("button6");
-let button7 = document.getElementById("button7");
-let button8 = document.getElementById("button8");
-let button9 = document.getElementById("button9");
-
-//operandus gombok
-let buttonPlus = document.getElementById("buttonPlus");
-let buttonMinus = document.getElementById("buttonMinus");
-let buttonTimes = document.getElementById("buttonTimes");
-let buttonDivide = document.getElementById("buttonDivide");
-let buttonEquals = document.getElementById("buttonEquals");
-
 //Események, esemény kezelés: feliratkozás az eseményre
 //operandus click
-buttonPlus.addEventListener("click", OnOperandClick);
-buttonMinus.addEventListener("click", OnOperandClick);
-buttonTimes.addEventListener("click", OnOperandClick);
-buttonDivide.addEventListener("click", OnOperandClick);
-buttonEquals.addEventListener("click", OnOperandClick);
-
+for (let i = 0; i < document.getElementsByClassName("operand").length; i++) {
+    document.getElementsByClassName("operand")[i].addEventListener("click", OnOperandClick);
+}
 //numbers click
-button0.addEventListener("click", OnNumberClick);
-button1.addEventListener("click", OnNumberClick);
-button2.addEventListener("click", OnNumberClick);
-button3.addEventListener("click", OnNumberClick);
-button4.addEventListener("click", OnNumberClick);
-button5.addEventListener("click", OnNumberClick);
-button6.addEventListener("click", OnNumberClick);
-button7.addEventListener("click", OnNumberClick);
-button8.addEventListener("click", OnNumberClick);
-button9.addEventListener("click", OnNumberClick);
+for (let i = 0; i < document.getElementsByClassName("number").length; i++) {
+    document.getElementsByClassName("number")[i].addEventListener("click", OnNumberClick);
+}
 
 //Eseménykezelők
 function OnOperandClick() {
