@@ -107,12 +107,16 @@ function OnNumberClick() {
     //Állapot vizsgálat
     switch (status) {
         case STATUS_FIRSTNUMBER:
-            SetNumber1(number1 * 10 + currentNumber);
+            if (displayNumber1.innerText.length <= 8) {
+                SetNumber1(number1 * 10 + currentNumber);
+            }
             break;
         case STATUS_OPERAND:
             status = STATUS_SECONDNUMBER;
         case STATUS_SECONDNUMBER:
-            SetNumber2(number2 * 10 + currentNumber);
+            if (displayNumber2.innerText.length <= 8) {
+                SetNumber2(number2 * 10 + currentNumber);
+            }
             break;
         case STATUS_DONE:
             SetNumber1(currentNumber);
