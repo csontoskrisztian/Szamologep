@@ -31,7 +31,10 @@ for (let i = 0; i < document.getElementsByClassName("number").length; i++) {
 for (let i = 0; i < document.getElementsByClassName("delete").length; i++) {
     document.getElementsByClassName("delete")[i].addEventListener("click", OnDeleteClick);
 }
-
+//modifier click
+for (let i = 0; i < document.getElementsByClassName("modifier").length; i++) {
+    document.getElementsByClassName("modifier")[i].addEventListener("click", OnModifyClick);
+}
 
 
 //Eseménykezelők
@@ -65,8 +68,8 @@ function OnOperandClick() {
         case STATUS_SECONDNUMBER:
             let answer = Math.round(eval(number1 + operand + number2) * 1000) / 1000;
             SetNumber1(answer);
-            SetOperand(null);
-            SetNumber2(null);
+            SetOperand("");
+            SetNumber2("");
             if (currentOperand == "=") {
                 status = STATUS_DONE;
             } else {
@@ -123,14 +126,12 @@ function OnDeleteClick() {
                 }
                 break;
         }
-    }
-    else if (this.id == "buttonC") {
+    } else if (this.id == "buttonC") {
         SetNumber1("");
         SetOperand("");
         SetNumber2("");
         status = STATUS_FIRSTNUMBER;
-    }
-    else if (this.id == "buttonCE") {
+    } else if (this.id == "buttonCE") {
         switch (status) {
             case STATUS_FIRSTNUMBER:
                 SetNumber1("");
@@ -144,6 +145,37 @@ function OnDeleteClick() {
                 status = STATUS_OPERAND;
                 break;
         }
+    }
+}
+
+function OnModifyClick() {
+    let f_number = status == STATUS_FIRSTNUMBER || status == STATUS_DONE;
+    let s_number = status == STATUS_SECONDNUMBER;
+
+    switch (this.id) {
+        case "buttonReciprocal":
+            if(f_number) SetNumber1(1/number1);
+            if(s_number) SetNumber2(1/number2);
+            break;
+        case "buttonSquare":
+            if(f_number) SetNumber1(Math.pow(number1, 2));
+            if(s_number) SetNumber2(Math.pow(number2, 2));
+            break;
+        case "buttonSquareroot":
+            if(f_number) SetNumber1(Math.sqrt(number1));
+            if(s_number) SetNumber2(Math.sqrt(number2));
+            break;
+        case "buttonSign":
+            if(f_number) SetNumber1(number1*-1);
+            if(s_number) SetNumber2(number2*-1);
+            break;
+        case "buttonDecimalpoint":
+            if(f_number && !number1.includes(".")) SetNumber1(String(number1)+".");
+            if(s_number && !number2.includes(".")) SetNumber2(String(number2)+".");
+            break;
+        case "buttonPercentage":
+            if(s_number) SetNumber2(number2 / 100);
+            break;
     }
 }
 
