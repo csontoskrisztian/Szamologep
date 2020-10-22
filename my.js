@@ -1,10 +1,11 @@
 // console.log("Hello World!");
 
 // Állapotok: konstansok
-const STATUS_FIRSTNUMBER = "STATUS_FIRSTNUMBER"
-const STATUS_SECONDNUMBER = "STATUS_SECONDNUMBER"
-const STATUS_OPERAND = "STATUS_OPERAND"
-const STATUS_DONE = "STATUS_DONE"
+const STATUS_FIRSTNUMBER = "STATUS_FIRSTNUMBER";
+const STATUS_SECONDNUMBER = "STATUS_SECONDNUMBER";
+const STATUS_OPERAND = "STATUS_OPERAND";
+const STATUS_DONE = "STATUS_DONE";
+const STATUS_ERROR = "STATUS_ERROR";
 
 // Változók
 let number1 = "";
@@ -67,16 +68,25 @@ function OnOperandClick() {
             break;
         case STATUS_SECONDNUMBER:
             let answer = Math.round(eval(number1 + operand + number2) * 1000) / 1000;
-            SetNumber1(answer);
-            SetOperand("");
-            SetNumber2("");
-            if (currentOperand == "=") {
-                status = STATUS_DONE;
+            if (answer == Infinity) {
+                SetNumber1("ERROR");
+                SetOperand("");
+                SetNumber2("");
+                status = STATUS_ERROR;
             } else {
-                SetOperand(currentOperand);
-                status = STATUS_OPERAND;
+                SetNumber1(answer);
+                SetOperand("");
+                SetNumber2("");
+                if (currentOperand == "=") {
+                    status = STATUS_DONE;
+                } else {
+                    SetOperand(currentOperand);
+                    status = STATUS_OPERAND;
+                }
             }
             break;
+        case STATUS_ERROR:
+            return;
     }
 }
 
@@ -88,16 +98,17 @@ function OnNumberClick() {
     switch (status) {
         case STATUS_FIRSTNUMBER:
             if (displayNumber1.innerText.length <= 8) {
-                SetNumber1(String(number1) + String(currentNumber));
+                SetNumber1(String(number1) + currentNumber);
             }
             break;
         case STATUS_OPERAND:
             status = STATUS_SECONDNUMBER;
         case STATUS_SECONDNUMBER:
             if (displayNumber2.innerText.length <= 8) {
-                SetNumber2(String(number2) + String(currentNumber));
+                SetNumber2(String(number2) + currentNumber);
             }
             break;
+        case STATUS_ERROR:
         case STATUS_DONE:
             SetNumber1(currentNumber);
             status = STATUS_FIRSTNUMBER
@@ -125,6 +136,8 @@ function OnDeleteClick() {
                     status = STATUS_OPERAND;
                 }
                 break;
+            case STATUS_ERROR:
+                return;
         }
     } else if (this.id == "buttonC") {
         SetNumber1("");
@@ -144,6 +157,8 @@ function OnDeleteClick() {
                 SetNumber2("");
                 status = STATUS_OPERAND;
                 break;
+            case STATUS_ERROR:
+                return;
         }
     }
 }
@@ -154,27 +169,27 @@ function OnModifyClick() {
 
     switch (this.id) {
         case "buttonReciprocal":
-            if(f_number) SetNumber1(1/number1);
-            if(s_number) SetNumber2(1/number2);
+            if (f_number) SetNumber1(1 / number1);
+            if (s_number) SetNumber2(1 / number2);
             break;
         case "buttonSquare":
-            if(f_number) SetNumber1(Math.pow(number1, 2));
-            if(s_number) SetNumber2(Math.pow(number2, 2));
+            if (f_number) SetNumber1(Math.pow(number1, 2));
+            if (s_number) SetNumber2(Math.pow(number2, 2));
             break;
         case "buttonSquareroot":
-            if(f_number) SetNumber1(Math.sqrt(number1));
-            if(s_number) SetNumber2(Math.sqrt(number2));
+            if (f_number) SetNumber1(Math.sqrt(number1));
+            if (s_number) SetNumber2(Math.sqrt(number2));
             break;
         case "buttonSign":
-            if(f_number) SetNumber1(number1*-1);
-            if(s_number) SetNumber2(number2*-1);
+            if (f_number) SetNumber1(number1 * -1);
+            if (s_number) SetNumber2(number2 * -1);
             break;
         case "buttonDecimalpoint":
-            if(f_number && !number1.includes(".")) SetNumber1(String(number1)+".");
-            if(s_number && !number2.includes(".")) SetNumber2(String(number2)+".");
+            if (f_number && !number1.includes(".")) SetNumber1(String(number1) + ".");
+            if (s_number && !number2.includes(".")) SetNumber2(String(number2) + ".");
             break;
         case "buttonPercentage":
-            if(s_number) SetNumber2(number2 / 100);
+            if (s_number) SetNumber2(number2 / 100);
             break;
     }
 }
