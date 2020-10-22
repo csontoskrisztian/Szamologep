@@ -2,34 +2,36 @@ html {
     margin: 0;
 }
 
-.my-mb-1 {
-    margin-bottom: 1rem;
-}
-
 .wrapper, #number-buttons-wrapper, #operand-buttons-wrapper{
     display: flex;
 }
 
+#number-buttons-wrapper, #operand-buttons-wrapper, #display-wrapper {
+    border: 1px solid black;
+}
+
 .wrapper {
     margin: 0 auto;
-    max-width: fit-content;
+    max-width: 400px;
     flex-flow: row wrap;
 }
 
 #display-wrapper {
     flex: 100%;
     height: 20px;
-    max-width: 260px;
+    text-align: right;
 }
 
 #number-buttons-wrapper {
     flex-flow: row wrap;
+    flex: 66%;
 }
 
 #operand-buttons-wrapper {
     flex-flow: column nowrap;
+    flex: 33%;
 }
 
-#number-buttons-wrapper button, #operand-buttons-wrapper button {
+#number-buttons-wrapper button {
     flex: 33%;
 }
