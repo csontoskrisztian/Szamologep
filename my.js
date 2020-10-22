@@ -185,8 +185,8 @@ function OnModifyClick() {
             if (s_number) SetNumber2(number2 * -1);
             break;
         case "buttonDecimalpoint":
-            if (f_number && !number1.includes(".")) SetNumber1(String(number1) + ".");
-            if (s_number && !number2.includes(".")) SetNumber2(String(number2) + ".");
+            if (f_number && !number1.includes(".") && number1.length < 8) SetNumber1(String(number1) + ".");
+            if (s_number && !number2.includes(".") && number2.length < 8) SetNumber2(String(number2) + ".");
             break;
         case "buttonPercentage":
             if (s_number) SetNumber2(number2 / 100);
@@ -197,14 +197,16 @@ function OnModifyClick() {
 //Értékadó függvények
 //number1
 function SetNumber1(value) {
-    number1 = value;
-    displayNumber1.innerText = value;
+    let value_r = String(value).slice(0, 8);
+    number1 = String(value_r);
+    displayNumber1.innerText = value_r;
 }
 
 //number2
 function SetNumber2(value) {
-    number2 = value;
-    displayNumber2.innerText = value;
+    let value_r = String(value).slice(0, 8);
+    number2 = String(value_r);
+    displayNumber2.innerText = value_r;
 }
 
 //operand
