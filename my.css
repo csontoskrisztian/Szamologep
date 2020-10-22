@@ -2,36 +2,71 @@ html {
     margin: 0;
 }
 
-.wrapper, #number-buttons-wrapper, #operand-buttons-wrapper{
+.wrapper,
+#left-buttons-wrapper,
+#right-buttons-wrapper,
+#top-buttons-wrapper,
+#display-wrapper {
     display: flex;
 }
 
-#number-buttons-wrapper, #operand-buttons-wrapper, #display-wrapper {
+.wrapper {
     border: 1px solid black;
 }
 
 .wrapper {
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 350px;
+    height: 400px;
     flex-flow: row wrap;
+    align-items: flex-start
 }
 
+/* Kijelző */
 #display-wrapper {
     flex: 100%;
-    height: 20px;
     text-align: right;
+    height: 10%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5px;
 }
 
-#number-buttons-wrapper {
+#display-wrapper span {
+    font-size: 1.8rem;
+}
+
+/* Felső gombok (%, CE, C, D, 1/x, x2, 2√x, /)*/
+#top-buttons-wrapper {
     flex-flow: row wrap;
-    flex: 66%;
+    flex: 100%;
+    height: 30%;
 }
 
-#operand-buttons-wrapper {
+#top-buttons-wrapper button {
+    flex: 25%;
+}
+
+/* Bal oldali gombok (számok + előjel + tizedes vessző) */
+#left-buttons-wrapper {
+    flex-flow: row wrap;
+    flex: 75%;
+    height: 60%;
+}
+
+#left-buttons-wrapper button {
+    flex: 33.333%;
+}
+
+
+/* Jobb oldali gombok (Műveleti jelek - /) */
+#right-buttons-wrapper {
     flex-flow: column nowrap;
-    flex: 33%;
+    flex: 25%;
+    height: 60%;
 }
 
-#number-buttons-wrapper button {
-    flex: 33%;
+#right-buttons-wrapper button {
+    flex: 100%;
 }

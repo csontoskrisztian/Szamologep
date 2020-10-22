@@ -12,33 +12,45 @@
     <div class="wrapper">
         <!-- Kijelző -->
         <div id="display-wrapper">
-            <span id="displayNumber1"></span>
+            <span id="displayNumber1">&nbsp;</span>
             <span id="displayOperand"></span>
             <span id="displayNumber2"></span>
         </div>
 
-        <!-- Szám gombok -->
-        <div id="number-buttons-wrapper" class="my-mb-1">
-            <button id="button1">1</button>
-            <button id="button2">2</button>
-            <button id="button3">3</button>
-            <button id="button4">4</button>
-            <button id="button5">5</button>
-            <button id="button6">6</button>
-            <button id="button7">7</button>
-            <button id="button8">8</button>
-            <button id="button9">9</button>
-
-            <button id="button0">0</button>
+        <!-- Felső gombok -->
+        <div id="top-buttons-wrapper">
+            <button id="buttonPercentage">%</button>
+            <button id="buttonCE">CE</button>
+            <button id="buttonC">C</button>
+            <button id="buttonDelete">D</button>
+            <button id="buttonReciprocal">1/x</button>
+            <button id="buttonSquare">x2</button>
+            <button id="buttonSquareroot">2√x</button>
+            <button id="buttonDivide" class="operant">/</button>
         </div>
 
-        <!-- Operandus gombok -->
-        <div id="operand-buttons-wrapper" class="my-mb-1">
-            <button id="buttonPlus">+</button>
-            <button id="buttonMinus">-</button>
-            <button id="buttonTimes">*</button>
-            <button id="buttonDivide">/</button>
-            <button id="buttonEquals">=</button>
+        <!-- Alsó Bal gombok -->
+        <div id="left-buttons-wrapper">
+            <button id="button1" class="number">1</button>
+            <button id="button2" class="number">2</button>
+            <button id="button3" class="number">3</button>
+            <button id="button4" class="number">4</button>
+            <button id="button5" class="number">5</button>
+            <button id="button6" class="number">6</button>
+            <button id="button7" class="number">7</button>
+            <button id="button8" class="number">8</button>
+            <button id="button9" class="number">9</button>
+            <button id="buttonSign">+/-</button>
+            <button id="button0" class="number">0</button>
+            <button id="buttonDecimalpoint">,</button>
+        </div>
+
+        <!-- Alsó Jobb gombok -->
+        <div id="right-buttons-wrapper">
+            <button id="buttonTimes" class="operant">*</button>
+            <button id="buttonMinus" class="operant">-</button>
+            <button id="buttonPlus" class="operant">+</button>
+            <button id="buttonEquals" class="operant">=</button>
         </div>
     </div>
 
