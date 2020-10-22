@@ -7,9 +7,9 @@ const STATUS_OPERAND = "STATUS_OPERAND"
 const STATUS_DONE = "STATUS_DONE"
 
 // Változók
-let number1 = null;
-let number2 = null;
-let operand = null;
+let number1 = "";
+let number2 = "";
+let operand = "";
 let status = STATUS_FIRSTNUMBER;
 
 // Az elemek összegyűjtése
@@ -27,6 +27,12 @@ for (let i = 0; i < document.getElementsByClassName("operand").length; i++) {
 for (let i = 0; i < document.getElementsByClassName("number").length; i++) {
     document.getElementsByClassName("number")[i].addEventListener("click", OnNumberClick);
 }
+//delete click
+for (let i = 0; i < document.getElementsByClassName("delete").length; i++) {
+    document.getElementsByClassName("delete")[i].addEventListener("click", OnDeleteClick);
+}
+
+
 
 //Eseménykezelők
 function OnOperandClick() {
@@ -53,7 +59,7 @@ function OnOperandClick() {
             if (currentOperand == "=") {
                 return;
             }
-            
+
             SetOperand(currentOperand);
             break;
         case STATUS_SECONDNUMBER:
@@ -63,7 +69,7 @@ function OnOperandClick() {
             SetNumber2(null);
             if (currentOperand == "=") {
                 status = STATUS_DONE;
-            }else{
+            } else {
                 SetOperand(currentOperand);
                 status = STATUS_OPERAND;
             }
@@ -73,26 +79,71 @@ function OnOperandClick() {
 
 function OnNumberClick() {
     let currentElement = this;
-    let currentNumber = Number(currentElement.innerText);
+    let currentNumber = currentElement.innerText;
 
     //Állapot vizsgálat
     switch (status) {
         case STATUS_FIRSTNUMBER:
             if (displayNumber1.innerText.length <= 8) {
-                SetNumber1(number1 * 10 + currentNumber);
+                SetNumber1(String(number1) + String(currentNumber));
             }
             break;
         case STATUS_OPERAND:
             status = STATUS_SECONDNUMBER;
         case STATUS_SECONDNUMBER:
             if (displayNumber2.innerText.length <= 8) {
-                SetNumber2(number2 * 10 + currentNumber);
+                SetNumber2(String(number2) + String(currentNumber));
             }
             break;
         case STATUS_DONE:
             SetNumber1(currentNumber);
             status = STATUS_FIRSTNUMBER
             break;
+    }
+}
+
+function OnDeleteClick() {
+    if (this.id == "buttonDelete") {
+        switch (status) {
+            case STATUS_FIRSTNUMBER:
+                if (number1.length > 0) {
+                    SetNumber1(number1.slice(0, number1.length - 1));
+                }
+                break;
+            case STATUS_OPERAND:
+                SetOperand("");
+                status = STATUS_FIRSTNUMBER;
+                break;
+            case STATUS_SECONDNUMBER:
+                if (number2.length > 0) {
+                    SetNumber2(number2.slice(0, number2.length - 1));
+                }
+                if (number2.length == 0) {
+                    status = STATUS_OPERAND;
+                }
+                break;
+        }
+    }
+    else if (this.id == "buttonC") {
+        SetNumber1("");
+        SetOperand("");
+        SetNumber2("");
+        status = STATUS_FIRSTNUMBER;
+    }
+    else if (this.id == "buttonCE") {
+        switch (status) {
+            case STATUS_FIRSTNUMBER:
+                SetNumber1("");
+                break;
+            case STATUS_OPERAND:
+                SetOperand("");
+                status = STATUS_FIRSTNUMBER;
+                break;
+            case STATUS_SECONDNUMBER:
+                SetNumber2("");
+                status = STATUS_OPERAND;
+                break;
+        }
     }
 }
 
