@@ -53,7 +53,7 @@ function OnOperandClick() {
             SetOperand(currentOperand);
             break;
         case STATUS_FIRSTNUMBER:
-            if (currentOperand == "=") {
+            if (currentOperand == "=" || number1.length == 0) {
                 return;
             }
             status = STATUS_OPERAND
