@@ -110,6 +110,7 @@ button:hover {
 
 #buttonEquals {
     /* Dizájn */
+    color: black !important;
     background: limegreen !important;
 }
 
