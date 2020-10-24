@@ -2,21 +2,11 @@ html {
     margin: 0;
 }
 
-.wrapper,
-#left-buttons-wrapper,
-#right-buttons-wrapper,
-#top-buttons-wrapper,
-#display-wrapper {}
-
 .wrapper {
-    border: 1px solid black;
-}
-
-.wrapper {
-    margin: 0 auto;
-    max-width: 350px;
-    min-width: 150px;
-    height: 400px;
+    margin: 40px auto;
+    /* max-width: 500px; */
+    width: 50vw;
+    height: 80vh;
 }
 
 /* Kijelző */
@@ -26,68 +16,70 @@ html {
 }
 
 span {
-    font-size: 1.8rem;
+    font-size: 2.25rem;
 }
 
-button {
-    font-size: 1.5rem;
+.btn {
+    font-size: 4vw;
 }
 
-button:hover {}
-
-/* Felső gombok (%, CE, C, D, 1/x, x2, 2√x, /)*/
-#top-buttons-wrapper {
+.h-10 {
+    height: 10%;
+}
+.h-15 {
+    height: 15%;
+}
+.h-20 {
+    height: 20%;
+}
+.h-30 {
+    height: 30%;
+}
+.h-40 {
+    height: 40%;
+}
+.h-60 {
+    height: 60%;
 }
 
-#top-buttons-wrapper button {}
-
-/* Bal oldali gombok (számok + előjel + tizedes vessző) */
-#left-buttons-wrapper {
-}
-
-#left-buttons-wrapper button {}
-
-
-/* Jobb oldali gombok (Műveleti jelek - /) */
-#right-buttons-wrapper {
-}
-
-#right-buttons-wrapper button {}
-
-#buttonEquals {}
-
-.delete {}
-
-#buttonEquals:hover {}
-
-.delete:hover {}
-
-@media(max-width: 275px) {
+@media (max-width: 805px) {
     span {
-        font-size: 1.5rem;
-    }
-
-    button {
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
 }
 
-@media(max-width: 225px) {
+@media (max-width: 720px) {
     span {
-        font-size: 1.2rem;
-    }
-
-    button {
-        font-size: 1rem;
+        font-size: 1.8rem;
     }
 }
 
-@media(max-width: 200px) {
+@media (max-width: 655px) {
+    span {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 560px) {
+    span {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 460px) {
     span {
         font-size: 1rem;
     }
+}
 
-    button {
+@media (max-width: 390px) {
+    span {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 165px) {
+    span {
+        font-size: 0.7rem;
     }
 }
