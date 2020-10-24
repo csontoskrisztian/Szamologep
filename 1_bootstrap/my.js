@@ -68,7 +68,7 @@ function OnOperandClick() {
             break;
         case STATUS_SECONDNUMBER:
             let answer = Math.round(eval(number1 + operand + number2) * 1000) / 1000;
-            if (answer == Infinity) {
+            if (answer == Infinity || answer == undefined) {
                 SetNumber1("ERROR");
                 SetOperand("");
                 SetNumber2("");
