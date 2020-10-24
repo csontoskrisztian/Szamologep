@@ -232,14 +232,14 @@ function OnModifyClick() {
 function SetNumber1(value) {
     let value_r = String(value).slice(0, 9);
     number1 = String(value_r);
-    displayNumber1.innerText = value_r;
+    value == "" ? displayNumber1.innerHTML = "&nbsp;" : displayNumber1.innerHTML = value_r;
 }
 
 //number2
 function SetNumber2(value) {
     let value_r = String(value).slice(0, 9);
     number2 = String(value_r);
-    displayNumber2.innerText = value_r;
+    displayNumber2.innerHTML = value_r;
 }
 
 //operand
