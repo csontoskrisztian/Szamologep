@@ -50,21 +50,21 @@ function OnOperandClick() {
                 return;
             }
             status = STATUS_OPERAND;
-            SetOperand(currentOperand);
+            SetOperand(currentElement);
             break;
         case STATUS_FIRSTNUMBER:
             if (currentOperand == "=" || number1.length == 0) {
                 return;
             }
             status = STATUS_OPERAND
-            SetOperand(currentOperand);
+            SetOperand(currentElement);
             break;
         case STATUS_OPERAND:
             if (currentOperand == "=") {
                 return;
             }
 
-            SetOperand(currentOperand);
+            SetOperand(currentElement);
             break;
         case STATUS_SECONDNUMBER:
             let answer = Math.round(eval(number1 + operand + number2) * 1000) / 1000;
@@ -80,7 +80,7 @@ function OnOperandClick() {
                 if (currentOperand == "=") {
                     status = STATUS_DONE;
                 } else {
-                    SetOperand(currentOperand);
+                    SetOperand(currentElement);
                     status = STATUS_OPERAND;
                 }
             }
@@ -92,7 +92,40 @@ function OnOperandClick() {
 
 function OnNumberClick() {
     let currentElement = this;
-    let currentNumber = currentElement.innerText;
+    let currentNumber;
+
+    switch (currentElement.id) {
+        case "button0":
+            currentNumber = "0";
+            break;
+        case "button1":
+            currentNumber = "1";
+            break;
+        case "button2":
+            currentNumber = "2";
+            break;
+        case "button3":
+            currentNumber = "3";
+            break;
+        case "button4":
+            currentNumber = "4";
+            break;
+        case "button5":
+            currentNumber = "5";
+            break;
+        case "button6":
+            currentNumber = "6";
+            break;
+        case "button7":
+            currentNumber = "7";
+            break;
+        case "button8":
+            currentNumber = "8";
+            break;
+        case "button9":
+            currentNumber = "9";
+            break;
+    }
 
     //Állapot vizsgálat
     switch (status) {
@@ -197,20 +230,43 @@ function OnModifyClick() {
 //Értékadó függvények
 //number1
 function SetNumber1(value) {
-    let value_r = String(value).slice(0, 8);
+    let value_r = String(value).slice(0, 9);
     number1 = String(value_r);
     displayNumber1.innerText = value_r;
 }
 
 //number2
 function SetNumber2(value) {
-    let value_r = String(value).slice(0, 8);
+    let value_r = String(value).slice(0, 9);
     number2 = String(value_r);
     displayNumber2.innerText = value_r;
 }
 
 //operand
-function SetOperand(value) {
-    operand = value;
-    displayOperand.innerText = value;
+function SetOperand(element) {
+    let calculate_value;
+    let display_value;
+
+    switch (element.id) {
+        case "buttonDivide":
+            calculate_value = "/";
+            break;
+        case "buttonTimes":
+            calculate_value = "*";
+            break;
+        case "buttonMinus":
+            calculate_value = "-";
+            break;
+        case "buttonPlus":
+            calculate_value = "+";
+            break;
+        default:
+            calculate_value = "";
+            break;
+    }
+
+    element == "" ? display_value = "" : display_value = element.innerHTML;
+
+    operand = calculate_value;
+    displayOperand.innerHTML = display_value;
 }
