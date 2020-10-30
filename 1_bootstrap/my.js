@@ -197,8 +197,13 @@ function OnDeleteClick() {
 }
 
 function OnModifyClick() {
-    let f_number = status == STATUS_FIRSTNUMBER || status == STATUS_DONE;
-    let s_number = status == STATUS_SECONDNUMBER;
+    if (status == STATUS_DONE) {
+        status = STATUS_FIRSTNUMBER;
+        SetNumber1(0);
+    }
+
+    let f_number = (status == STATUS_FIRSTNUMBER);
+    let s_number = (status == STATUS_SECONDNUMBER);
 
     switch (this.id) {
         case "buttonReciprocal":
@@ -230,16 +235,33 @@ function OnModifyClick() {
 //Értékadó függvények
 //number1
 function SetNumber1(value) {
-    let value_r = String(value).slice(0, 9);
-    number1 = String(value_r);
-    value == "" ? displayNumber1.innerHTML = "&nbsp;" : displayNumber1.innerHTML = value_r;
+    console.log(status);
+    if (value == Infinity || value == undefined) {
+        number1 = "ERROR";
+        displayNumber1.innerHTML = "ERROR";
+        SetOperand("");
+        SetNumber2("");
+        status = STATUS_ERROR;
+    } else {
+        let value_r = String(value).slice(0, 9);
+        number1 = String(value_r);
+        displayNumber1.innerHTML = value_r;
+    }
 }
 
 //number2
 function SetNumber2(value) {
-    let value_r = String(value).slice(0, 9);
-    number2 = String(value_r);
-    displayNumber2.innerHTML = value_r;
+    if (value == Infinity || value == undefined) {
+        SetNumber1("ERROR");
+        SetOperand("");
+        number2 = "";
+        displayNumber2.innerHTML = "";
+        status = STATUS_ERROR;
+    } else {
+        let value_r = String(value).slice(0, 9);
+        number2 = String(value_r);
+        displayNumber2.innerHTML = value_r;
+    }
 }
 
 //operand
